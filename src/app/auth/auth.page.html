@@ -1,0 +1,51 @@
+<ion-header>
+  <ion-toolbar color="primary">
+    <ion-title>PARKLEC'H</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <div class="auth-container">
+    <ion-segment [(ngModel)]="authMode">
+      <ion-segment-button value="login">
+        <ion-label>Se connecter</ion-label>
+      </ion-segment-button>
+      <ion-segment-button value="register">
+        <ion-label>S'inscrire</ion-label></ion-segment-button>
+    </ion-segment>
+
+    <form *ngIf="authMode === 'login'" [formGroup]="authForm" (ngSubmit)="onSubmit()">
+      <ion-item class="form-item">
+        <ion-label position="floating">Email</ion-label>
+        <ion-input formControlName="email"></ion-input>
+      </ion-item>
+      <ion-item class="form-item">
+        <ion-label position="floating">Mot de passe</ion-label>
+        <ion-input type="password" formControlName="password"></ion-input>
+      </ion-item>
+      <ion-button class="form-button" expand="block" type="submit" [disabled]="authForm.invalid">Se connecter</ion-button>
+      <ion-text class="forgot-password">Mot de passe oublié ?</ion-text>
+    </form>
+
+    <form *ngIf="authMode === 'register'" [formGroup]="authForm" (ngSubmit)="onSubmit()">
+      <ion-item class="form-item">
+        <ion-label position="floating">Nom d'utilisateur</ion-label>
+        <ion-input formControlName="username"></ion-input>
+      </ion-item>
+      <ion-item class="form-item">
+        <ion-label position="floating">Email</ion-label>
+        <ion-input formControlName="email"></ion-input>
+      </ion-item>
+      <ion-item class="form-item">
+        <ion-label position="floating">Mot de passe</ion-label>
+        <ion-input type="password" formControlName="password"></ion-input>
+      </ion-item>
+      <ion-button class="form-button" expand="block" type="submit" [disabled]="authForm.invalid" color="secondary">Créer un compte</ion-button>
+      <ion-text class="terms">
+        En créant votre compte, vous acceptez nos conditions <a href="#">Terms and Conditions</a>.
+      </ion-text>
+    </form>
+
+    <ion-button class="form-button" expand="block" fill="clear" (click)="continueWithoutAccount()">Continuer sans compte</ion-button>
+  </div>
+</ion-content>

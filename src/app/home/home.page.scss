@@ -1,0 +1,78 @@
+.map-container {
+  height: 40%;
+  width: 100%;
+  background-color: #f4f4f4;
+  position: relative;
+}
+
+.map {
+  height: 100%;
+  width: 100%;
+  position: relative;
+  background-size: cover;
+}
+
+.map-marker {
+  font-size: 2em;
+  color: #007bff;
+  position: absolute;
+  top: 40%;
+  left: 45%;
+}
+
+ion-searchbar {
+  margin-top: 10px;
+}
+
+ion-card {
+  margin-top: 10px;
+  cursor: pointer;
+}
+
+.expanded-content {
+  margin-top: 10px;
+}
+
+.etat-remplissage {
+  margin-bottom: 10px;
+}
+
+.progress-container {
+  height: 10px;
+  background-color: #ddd;
+  border-radius: 10px;
+}
+
+.progress {
+  height: 10px;
+  border-radius: 10px;
+  background-color: #4CAF50;
+}
+
+.disponibles, .horaires {
+  margin-top: 10px;
+  margin-bottom: 10px;
+}
+
+ion-card-content div {
+  margin-top: 10px;
+}
+
+.expand-icon {
+  width: 14px;   
+  height: 14px; 
+  transition: transform 0.3s;
+}
+
+.expanded-content {
+  transition: max-height 0.3s ease-out;
+  overflow: hidden;
+}
+
+ion-card-title {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+

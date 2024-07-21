@@ -1,0 +1,89 @@
+<ion-header>
+  <ion-toolbar color="primary">
+    <ion-buttons slot="start">
+      <ion-button (click)="toggleMenu()">
+        <ion-icon slot="icon-only" name="menu-outline"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+    <ion-title>PARKLEC'H</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+
+  <div class="map-container">
+    <app-map></app-map>
+  </div>
+
+  <ion-item>
+    <ion-label>Ville</ion-label>
+    <ion-select [value]="selectedCity" (ionChange)="onCityChange($event)">
+      <ion-select-option value="angers">Angers</ion-select-option>
+      <ion-select-option value="bordeaux">Bordeaux</ion-select-option>
+      <ion-select-option value="dijon">Dijon</ion-select-option>
+      <ion-select-option value="issy">Issy-les-Moulineaux</ion-select-option>
+      <ion-select-option value="marseille">Marseille</ion-select-option>
+      <ion-select-option value="nantes">Nantes</ion-select-option>
+      <ion-select-option value="nimes">Nîmes</ion-select-option>
+      <ion-select-option value="orleans">Orléans</ion-select-option>
+      <ion-select-option value="paris">Paris</ion-select-option>
+      <ion-select-option value="rennes">Rennes</ion-select-option>
+      <ion-select-option value="strasbourg">Strasbourg</ion-select-option>
+      <ion-select-option value="toulouse">Toulouse</ion-select-option>
+      <ion-select-option value="tours">Tours</ion-select-option>
+    </ion-select>
+  </ion-item>
+
+  <ion-searchbar placeholder="Nom ou ville du parking" (ionInput)="filterParkings($event)"></ion-searchbar>
+
+  <ion-list>
+    <ion-card *ngFor="let parking of filteredParkings">
+      <ion-card-content (click)="toggleExpand(parking)">
+        <ion-card-title>
+          {{ parking.name }}
+          <img
+            *ngIf="expandedParking === parking.name"
+            src="assets/icon/up-arrow.png"
+            alt="Up Arrow"
+            class="expand-icon"
+          />
+          <img
+            *ngIf="expandedParking !== parking.name"
+            src="assets/icon/arrow-down-sign-to-navigate.png"
+            alt="Down Arrow"
+            class="expand-icon"
+          />
+        </ion-card-title>
+        <p>{{ parking.spaces !== undefined && parking.spaces !== null ? parking.spaces + ' places disponibles' : 'NR' }}</p>
+        <p *ngIf="parking.distance != null">Distance: {{ parking.distance?.toFixed(2) }} km</p>
+        <p *ngIf="parking.distance == null">Distance: NR</p>
+        <div *ngIf="expandedParking === parking.name" class="expanded-content">
+          <div *ngIf="parking.occupiedSpaces && parking.totalSpaces" class="etat-remplissage">
+            <p>Etat de remplissage</p>
+            <div class="progress-container">
+              <div class="progress" [style.width.%]="(parking.occupiedSpaces / parking.totalSpaces) * 100"></div>
+            </div>
+            <p>{{ parking?.occupiedSpaces }}/{{ parking?.totalSpaces }}</p>
+          </div>
+          <div class="disponibles">
+            <p *ngIf="parking.soloistSpaces">Solistes : {{ parking?.soloistSpaces }} places</p>
+            <p *ngIf="parking.veSpaces">VE : {{ parking?.veSpaces }} places</p>
+            <p *ngIf="parking.pmrSpaces">PMR : {{ parking?.pmrSpaces }} places</p>
+            <p *ngIf="parking.carpoolSpaces">Covoiturage : {{ parking?.carpoolSpaces }} places</p>
+            <p *ngIf="parking.bikeSpaces">Vélo : {{ parking?.bikeSpaces }} places</p>
+            <p *ngIf="parking.motoSpaces">Moto : {{ parking?.motoSpaces }} places</p>
+            <p *ngIf="parking.veSpaces">Véhicule électrique: {{ parking?.veSpaces }} places</p>
+            <p *ngIf="parking.state">Etat: {{ parking?.state }}</p>
+            <p *ngIf="parking.presenceToilets">Presence de toilettes: {{ parking?.presenceToilets }}</p>
+            <p *ngIf="parking.presenceElevators">Presence d'ascenseurs: {{ parking?.presenceElevators }}</p>
+          </div>
+          <div class="horaires" *ngIf="parking.openingHours">
+            <p>Horaires</p>
+            <p>{{ parking?.openingHours }}</p>
+          </div>
+          <ion-button *ngIf="parking.location" expand="full" color="primary" (click)="openGoogleMaps(parking)">S'y rendre</ion-button>
+        </div>
+      </ion-card-content>
+    </ion-card>
+  </ion-list>
+</ion-content>

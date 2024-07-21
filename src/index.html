@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>PARKLEC’H</title>
+  <base href="/">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="icon" type="image/x-icon" href="favicon.ico">
+  <script>
+    function loadGoogleMapsApi() {
+      const script = document.createElement('script');
+      script.src = `https://maps.googleapis.com/maps/api/js?key=AIzaSyDsi4-sg3XCaZyhdKrxBf8sG6QKOZ1zDIk&callback=initMap&libraries=marker`;
+      script.async = true;
+      script.defer = true;
+      document.head.appendChild(script);
+    }
+
+    function initMap() {
+      // Cette fonction sera appelée une fois l'API chargée
+      console.log('Google Maps API loaded successfully');
+      if (window.mapComponentInit) {
+        window.mapComponentInit();
+      }
+    }
+
+    loadGoogleMapsApi();
+  </script>
+  
+</head>
+<body>
+  <app-root></app-root>
+</body>
+</html>

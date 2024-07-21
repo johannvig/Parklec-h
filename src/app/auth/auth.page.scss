@@ -1,0 +1,43 @@
+.auth-container {
+  padding: 16px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  height: 100%;
+}
+
+ion-segment {
+  margin-bottom: 20px;
+}
+
+form {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+}
+
+.form-item {
+  margin-bottom: 10px;
+  width: 100%;
+  max-width: 400px; 
+}
+
+.form-button {
+  margin-top: 20px;
+  width: 100%;
+  max-width: 400px; 
+}
+
+.forgot-password,
+.continue-without-account,
+.terms {
+  display: block;
+  text-align: center;
+  margin-top: 10px;
+}
+
+.terms a {
+  text-decoration: underline;
+}

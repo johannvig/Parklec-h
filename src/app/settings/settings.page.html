@@ -1,0 +1,27 @@
+<ion-header>
+  <ion-toolbar color="primary">
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="/home"></ion-back-button>
+    </ion-buttons>
+    <ion-title>Paramètres</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-list>
+    <!-- Changement de mot de passe -->
+    <ion-item>
+      <ion-label position="stacked">Mot de passe actuel</ion-label>
+      <ion-input [(ngModel)]="currentPassword" type="password"></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-label position="stacked">Nouveau mot de passe</ion-label>
+      <ion-input [(ngModel)]="newPassword" type="password"></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-label position="stacked">Confirmez le nouveau mot de passe</ion-label>
+      <ion-input [(ngModel)]="confirmPassword" type="password"></ion-input>
+    </ion-item>
+    <ion-button expand="full" (click)="changePassword()">Changer le mot de passe</ion-button>
+  </ion-list>
+</ion-content>
